@@ -1,4 +1,4 @@
-export interface INote {
+interface INote {
     id: number;
     note: string;
     color: string;

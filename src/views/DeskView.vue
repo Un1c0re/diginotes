@@ -22,6 +22,7 @@ const props = defineProps<{
 }>();
 
 const currentDesk = ref<Desk>(getDesk(parseInt(props.deskId)));
+
 watch(
     () => getDesk(parseInt(props.deskId)),
     (newDesk) => {

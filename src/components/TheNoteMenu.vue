@@ -1,8 +1,8 @@
 <template>
   <div class="bg-white p-3 border rounded-md flex items-center justify-around gap-4 drop-shadow-lg">
-    <div class="note-button bg-[#FEB1B1]" @click="createNote('#FEB1B1')"></div>
-    <div class="note-button bg-[#B1D0FE]" @click="createNote('#B1D0FE')"></div>
-    <div class="note-button bg-[#FCFEB1]" @click="createNote('#FCFEB1')"></div>
+    <div class="note-button bg-red-note" @click="createNote('#FEB1B1')"></div>
+    <div class="note-button bg-blue-note" @click="createNote('#B1D0FE')"></div>
+    <div class="note-button bg-yellow-note" @click="createNote('#FCFEB1')"></div>
   </div>
 </template>
 

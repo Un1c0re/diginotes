@@ -81,12 +81,4 @@ const deleteDesk = (deskId: number) => {
 .delete-btn {
   @apply bg-transparent text-red-500 hover:border-transparent p-0 absolute right-0 top-6;
 }
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
 </style>

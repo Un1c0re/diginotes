@@ -4,7 +4,7 @@
        :style="{ top: note.y + 'px', left: note.x + 'px'}"
        @mousedown="onMouseDown"
        @mouseup="onMouseUp">
-    <div v-if="showButtons" class="absolute z-20 top-[-45px] left-[35px] flex items-center justify-center p-2 rounded-md">
+    <div v-if="showButtons" class="absolute z-20 top-[-45px] left-[35px] flex items-center justify-center p-2">
       <button @click="pin" class="context-button p-2 rounded-r-none">
         <img :src="pinIcon" alt="pin" class="h-4 w-4"/>
       </button>
@@ -28,14 +28,13 @@
 <script setup lang="ts">
 import pinIcon from '@/assets/pin-icon.svg';
 import deleteIcon from '@/assets/delete-icon.svg';
-
-import {INote} from "@/store/models/Note";
+import {Note} from "@/store/models/Note";
 import {ref} from "vue";
 import {useDeskStore} from "@/store/DeskStore";
 
 const props = defineProps<{
   deskId: number;
-  note: INote;
+  note: Note;
 }>();
 
 const {updateNoteInDesk, deleteNoteInDesk} = useDeskStore();
