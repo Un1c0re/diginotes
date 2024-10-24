@@ -4,16 +4,21 @@
        :style="{ top: note.y + 'px', left: note.x + 'px'}"
        @mousedown="onMouseDown"
        @mouseup="onMouseUp">
-    <div v-if="showButtons" class="mb-2 flex items-center justify-around bg-[#242424] p-2 rounded-md">
-      <button @click="pin">pin</button>
-      <button>del</button>
+    <div v-if="showButtons" class="absolute z-20 top-[-45px] left-[35px] flex items-center justify-center p-2 rounded-md">
+      <button @click="pin" class="context-button p-2 rounded-r-none">
+        <img :src="pinIcon" alt="pin" class="h-4 w-4"/>
+      </button>
+      <button @click="deleteNote" class="context-button rounded-l-none">
+        <img :src="deleteIcon" alt="delete" class="h-4 w-4"/>
+      </button>
     </div>
-    <div v-if="note.pinned" class="bottom-[-30px] z-99 h-[40px] w-[6rem] bg-red-400"></div>
-    <div class="cursor-pointer w-[10rem] h-[10rem] shadow-lg opacity-1 z-0"
+    <div v-if="note.pinned"
+         class="absolute z-10 top-[-15px] left-[30px] h-[30px] w-[6rem] bg-purple-note border-2 border-white"></div>
+    <div class="cursor-pointer w-[10rem] h-[10rem] shadow-lg opacity-1 z-0 pt-3.5"
          :style="{backgroundColor: note.color}"
          @click="onClick">
       <textarea v-model="note.note"
-                class="note-textarea p-0.5 text-black"
+                class="note-textarea p-2 text-black cursor-default"
                 @input="onNoteTextChange"
                 placeholder="Введите текст"></textarea>
     </div>
@@ -21,6 +26,9 @@
 </template>
 
 <script setup lang="ts">
+import pinIcon from '@/assets/pin-icon.svg';
+import deleteIcon from '@/assets/delete-icon.svg';
+
 import {INote} from "@/store/models/Note";
 import {ref} from "vue";
 import {useDeskStore} from "@/store/DeskStore";
@@ -30,7 +38,7 @@ const props = defineProps<{
   note: INote;
 }>();
 
-const {updateNoteInDesk} = useDeskStore();
+const {updateNoteInDesk, deleteNoteInDesk} = useDeskStore();
 
 const note = props.note;
 const isDragging = ref(false);
@@ -80,9 +88,20 @@ const pin = () => {
   showButtons.value = false;
   updateNoteInDesk(props.deskId, note);
 };
+
+const deleteNote = () => {
+  deleteNoteInDesk(props.deskId, note.id);
+}
 </script>
 
 <style scoped>
+.context-button {
+  @apply bg-[#242424] p-2;
+}
+.context-button:hover {
+  @apply bg-[#353535] border-transparent outline-none cursor-pointer;
+}
+
 .dragging {
   cursor: grabbing !important;
 }

@@ -1,11 +1,14 @@
 <template>
-  <div class="h-[94vh] w-[96vw] bg-gray-800 p-2 flex flex-wrap gap-2">
-    <div v-for="desk in desks" :key="desk.id" class="flex flex-col gap-2">
-      <div :style="{ backgroundColor: generateRandomColor() }" class="desk-card" @click="openDesk(desk.id)"></div>
-      <input v-model="desk.name" class="desk-input font-bold"/>
-      <p class="text-left">заметок: {{ desk.notes.length }}</p>
+  <div class="h-[94vh] w-[96vw] p-2 flex flex-wrap gap-5">
+    <div v-for="desk in desks" :key="desk.id" class="flex flex-col gap-1 drop-shadow-lg">
+      <div class="desk-card overflow-hidden" @click="openDesk(desk.id)">
+        <img class="h-[100%] w-[100%]" src="/placeholder.png" alt="placeholder"/>
+      </div>
+      <!--      <div :style="{ backgroundColor: generateRandomColor() }" class="desk-card" @click="openDesk(desk.id)"></div>-->
+      <input v-model="desk.name" class="desk-input font-bold text-black"/>
+      <p class="text-left text-black">заметок: {{ desk.notes.length }}</p>
     </div>
-    <div class="desk-card" @click="createDesk">Создать</div>
+    <div class="desk-card text-black" @click="createDesk">Создать</div>
   </div>
   <div class="absolute left-12 bottom-10">
   </div>
@@ -40,7 +43,11 @@ const generateRandomColor = (): string => {
 
 <style scoped>
 .desk-card {
-  @apply w-[10rem] h-[6rem] bg-red-400 border rounded-md flex flex-col align-middle justify-around cursor-pointer;
+  @apply w-[14rem] h-[8rem] border rounded-md flex flex-col justify-center items-center cursor-pointer;
+}
+
+.desk-card:hover {
+  @apply shadow-lg transition-shadow;
 }
 
 .desk-input {

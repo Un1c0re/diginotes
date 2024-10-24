@@ -6,6 +6,20 @@ export default {
     ],
     theme: {
         extend: {
+            colors: {
+                yellow: {
+                    note: "#FCFEB1"
+                },
+                blue: {
+                    note: "#B1D0FE"
+                },
+                red: {
+                    note: "#FEB1B1"
+                },
+                purple: {
+                    note: "#DBCDFF"
+                },
+            },
             backgroundImage: {
                 'dot-pattern': 'radial-gradient(circle, #d3d3d3 1px, transparent 2px)',
             },
