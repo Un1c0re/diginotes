@@ -19,6 +19,10 @@ export const useDeskStore = defineStore("DeskStore", () => {
         desks.value.push(newDesk);
     }
 
+    const removeDesk = (deskId: number): void => {
+        desks.value.splice(deskId, 1);
+    }
+
     const addNoteToDesk = (deskId: number, newNote: Note): void => {
         newNote.id = desks.value[deskId].notes.length;
         desks.value[deskId].notes.push(newNote);
@@ -35,8 +39,9 @@ export const useDeskStore = defineStore("DeskStore", () => {
     return {
         $reset,
         desks,
-        addDesk,
         getDesk,
+        addDesk,
+        removeDesk,
         addNoteToDesk,
         updateNoteInDesk,
         deleteNoteInDesk,
