@@ -1,11 +1,10 @@
 <template>
-  <div class="h-[94vh] w-[96vw] p-2 flex flex-wrap gap-5">
-    <div v-for="desk in desks" :key="desk.id" class="flex flex-col gap-1 drop-shadow-lg">
-      <div class="desk-card overflow-hidden" @click="openDesk(desk.id)">
+  <div class="h-[94vh] w-[96vw] flex flex-wrap gap-5">
+    <div v-for="desk in desks" :key="desk.id" class="flex flex-col gap-1.5">
+      <div class="desk-card" @click="openDesk(desk.id)">
         <img class="h-[100%] w-[100%]" src="/placeholder.png" alt="placeholder"/>
       </div>
-      <input v-model="desk.name" class="desk-input font-bold text-black"/>
-
+      <input v-model="desk.name" class="desk-input"/>
       <div class="flex items-center justify-between">
         <p class="text-left text-black">заметок: {{ desk.notes.length }}</p>
         <div class="relative">
@@ -20,26 +19,24 @@
     </div>
     <div class="desk-card text-black" @click="createDesk">Создать</div>
   </div>
-  <div class="absolute left-12 bottom-10">
-  </div>
 </template>
 
 <script setup lang="ts">
-import {useDeskStore} from "@/store/DeskStore";
-import {useRouter} from "vue-router";
-import {Desk} from "@/store/models/Desk";
-import {ref} from "vue";
+import { useDeskStore } from "@/store/DeskStore";
+import { useRouter } from "vue-router";
+import { Desk } from "@/store/models/Desk";
+import { ref } from "vue";
 
-const {desks, addDesk, removeDesk} = useDeskStore();
+const { desks, addDesk, removeDesk } = useDeskStore();
 
 const router = useRouter();
 
 const activeDeskId = ref<number | null>(null);
 
 const createDesk = () => {
-  const newDesk = new Desk();
-  addDesk(newDesk);
-  openDesk(desks.findLast((x) => x)!.id);
+  let newDesk = new Desk();
+  newDesk = addDesk(newDesk);
+  openDesk(newDesk.id);
 }
 
 const openDesk = (deskId: number) => {
@@ -57,25 +54,22 @@ const deleteDesk = (deskId: number) => {
 
 <style scoped>
 .desk-card {
-  @apply w-[14rem] h-[8rem] border rounded-md flex flex-col justify-center items-center cursor-pointer;
-}
-
-.desk-card:hover {
-  @apply shadow-lg transition-shadow;
+  @apply w-[14rem] h-[8rem] border rounded-md;
+  @apply flex flex-col justify-center items-center;
+  @apply cursor-pointer overflow-hidden drop-shadow-md;
+  @apply hover:shadow-lg hover:transition-shadow;
 }
 
 .desk-input {
-  @apply bg-transparent focus:border-b focus:border-black outline-none;
-  transition: border-color 0.3s;
+  @apply bg-transparent outline-none;
+  @apply focus:border-b focus:border-black;
+  @apply font-bold text-black transition-colors;
 }
 
 .toggle {
   @apply text-black bg-transparent py-0 px-2 hover:border-transparent focus:outline-none;
-}
-
-.toggle:active {
-  @apply border-transparent outline-none;
-
+  @apply hover:border-transparent focus:outline-none;
+  @apply active:border-transparent active:outline-none;
 }
 
 .delete-btn {

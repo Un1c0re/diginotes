@@ -1,7 +1,7 @@
-import {ref} from "vue";
-import {defineStore} from "pinia";
-import {Desk} from "@/store/models/Desk";
-import {Note} from "@/store/models/Note";
+import { ref } from "vue";
+import { defineStore } from "pinia";
+import { Desk } from "@/store/models/Desk";
+import { Note } from "@/store/models/Note";
 
 export const useDeskStore = defineStore("DeskStore", () => {
     const desks = ref<Desk[]>([]);
@@ -14,9 +14,12 @@ export const useDeskStore = defineStore("DeskStore", () => {
         return new Desk(desks.value.find(d => d.id === deskId))
     };
 
-    const addDesk = (newDesk: Desk): void => {
-        newDesk.id = desks.value.length;
+    const addDesk = (newDesk: Desk): Desk => {
+        const lastDeskId = desks.value.findLast((x) => x)?.id;
+        newDesk.id = lastDeskId != undefined ? lastDeskId + 1 : 0;
         desks.value.push(newDesk);
+
+        return newDesk;
     }
 
     const removeDesk = (deskId: number): void => {
@@ -24,16 +27,30 @@ export const useDeskStore = defineStore("DeskStore", () => {
     }
 
     const addNoteToDesk = (deskId: number, newNote: Note): void => {
-        newNote.id = desks.value[deskId].notes.length;
-        desks.value[deskId].notes.push(newNote);
+        const desk = desks.value.find(d => d.id === deskId);
+        if (!desk) return;
+
+        const lastNoteId = desk.notes.findLast((x) => x)?.id;
+        newNote.id = lastNoteId != undefined ? lastNoteId + 1 : 0;
+
+        desk.notes.push(newNote);
     }
 
     const updateNoteInDesk = (deskId: number, updatedNote: Note): void => {
-        desks.value[deskId].notes[updatedNote.id] = {...updatedNote};
+        const desk = desks.value.find(d => d.id === deskId);
+        if (!desk) return;
+
+        const noteIndex = desk.notes.findIndex(n => n.id === updatedNote.id);
+        if (noteIndex === -1) return;
+
+        desk.notes[noteIndex] = updatedNote;
     }
 
     const deleteNoteInDesk = (deskId: number, noteId: number): void => {
-        desks.value[deskId].notes.splice(noteId, 1);
+        const desk = desks.value.find(d => d.id === deskId);
+        if (!desk) return;
+
+        desk.notes.splice(noteId, 1);
     }
 
     return {

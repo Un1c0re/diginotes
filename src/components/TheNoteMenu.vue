@@ -8,15 +8,15 @@
 
 <script setup lang="ts">
 
-import {useDeskStore} from "@/store/DeskStore";
-import {Note} from "@/store/models/Note";
+import { useDeskStore } from "@/store/DeskStore";
+import { Note } from "@/store/models/Note";
 
 const props = defineProps<{ deskId: number }>();
 
-const {addNoteToDesk} = useDeskStore();
+const { addNoteToDesk } = useDeskStore();
 
 const createNote = (noteColor: string) => {
-  const newNote = new Note({color: noteColor});
+  const newNote = new Note({ color: noteColor });
 
   addNoteToDesk(props.deskId, newNote);
 }
@@ -24,10 +24,6 @@ const createNote = (noteColor: string) => {
 
 <style scoped>
 .note-button {
-  @apply w-[2rem] h-[2rem]
-}
-
-.note-button:hover {
-  @apply cursor-pointer;
+  @apply w-[2rem] h-[2rem] hover:cursor-pointer;
 }
 </style>
