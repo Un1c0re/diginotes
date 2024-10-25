@@ -4,7 +4,7 @@ import {defineConfig} from "vite";
 import VueDevTools from "vite-plugin-vue-devtools";
 
 export default defineConfig({
-    base: "/",
+    base: "/diginotes/",
     build: {
         target: "esnext",
     },
