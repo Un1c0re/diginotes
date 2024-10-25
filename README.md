@@ -1,5 +1,36 @@
-# Vue 3 + TypeScript + Vite
+# Веб-версия доски для заметок
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Функциональные возможности
+- Создавать заметки;
+- Редактировать текст в заметках;
+- Перемещать заметки на доске мышью с зажатой левой клавишей;
+- Закреплять заметки (в таком состоянии заметка не должна перемещаться по доске).
+- Удалять заметки
+- Создавать доски;
+- Редактировать название доскок;
+- Удалять доски;
+- Доски сохраняются на устройстве
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Запуск (npm)
+
+- Скачайте репозиторий;
+- В командной строке выполните команду:
+
+```bash
+npm i
+```
+
+- Затем выполните команды:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Запуск (docker)
+- Скачайте репозиторий;
+- В командной строке выполните комады:
+```bash
+docker build -t my-vue-app .
+docker run -p 8080:80 my-vue-app
+```
