@@ -1,6 +1,6 @@
 <template>
-  <div class="h-[94vh] w-[96vw] flex flex-wrap gap-5">
-    <div v-for="desk in desks" :key="desk.id" class="flex flex-col gap-1.5">
+  <div class="h-[94vh] w-[96vw] flex flex-wrap gap-x-5">
+    <div v-for="desk in desks" :key="desk.id" class="h-[12rem] flex flex-col gap-1.5">
       <div class="desk-card" @click="openDesk(desk.id)">
         <img class="h-[100%] w-[100%]" src="/placeholder.png" alt="placeholder"/>
       </div>
@@ -17,8 +17,8 @@
         </div>
       </div>
     </div>
-    <div class="desk-card text-black" @click="createDesk">Создать</div>
   </div>
+  <button class="create-btn" @click="createDesk">Создать доску</button>
 </template>
 
 <script setup lang="ts">
@@ -74,5 +74,11 @@ const deleteDesk = (deskId: number) => {
 
 .delete-btn {
   @apply bg-transparent text-red-500 hover:border-transparent p-0 absolute right-0 top-6;
+}
+
+.create-btn {
+  @apply absolute bottom-10 right-12;
+  @apply bg-blue-note rounded-md text-black drop-shadow-md;
+  @apply hover:bg-yellow-note hover:border-transparent hover:outline-none hover:transition-colors;
 }
 </style>
