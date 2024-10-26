@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import DeskView from "@/views/DeskView.vue";
-import DesksList from "@/views/DesksList.vue";
+import DesksList from "@/views/Home.vue";
 
 
 const routes: RouteRecordRaw[] = [

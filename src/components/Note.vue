@@ -84,7 +84,7 @@ const onClick = () => {
 };
 
 const onNoteTextChange = () => {
-  updateNoteInDesk(props.deskId, note); // Сохраняем текст при изменении
+  updateNoteInDesk(props.deskId, note);
 };
 
 const pin = () => {

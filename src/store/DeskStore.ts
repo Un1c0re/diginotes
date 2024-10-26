@@ -22,6 +22,13 @@ export const useDeskStore = defineStore("DeskStore", () => {
         return newDesk;
     }
 
+    const updateDesk = (desk: Desk): void => {
+        const deskIndex = desks.value.findIndex(d => d.id == desk.id);
+        if (deskIndex === -1) return;
+
+        desks.value[deskIndex] = desk;
+    }
+
     const removeDesk = (deskId: number): void => {
         desks.value.splice(deskId, 1);
     }
@@ -58,6 +65,7 @@ export const useDeskStore = defineStore("DeskStore", () => {
         desks,
         getDesk,
         addDesk,
+        updateDesk,
         removeDesk,
         addNoteToDesk,
         updateNoteInDesk,

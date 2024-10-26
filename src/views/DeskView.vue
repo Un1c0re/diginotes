@@ -1,9 +1,12 @@
 <template>
-  <h1 class="absolute top-8 left-12 text-black text-2xl font-bold">{{ currentDesk.name }}</h1>
-  <div class="h-[94vh] w-[96vw] bg-dot-pattern border rounded-xl p-2 relative">
+  <div class="flex gap-2 items-center mb-2">
+    <button class="back-btn" @click="goBack">←</button>
+    <input v-model="currentDesk.name" class="desk-input" @input="onDeskNameChange" />
+  </div>
+  <div class="h-[90vh] w-[96vw] bg-dot-pattern border rounded-xl p-2 relative">
     <Note v-for="note in currentDesk.notes" :key="note.id" :desk-id="deskId" :note="note"/>
   </div>
-  <TheNoteMenu class="absolute left-12 bottom-10" :desk-id="deskId"/>
+  <TheNoteMenu class="absolute left-12 bottom-8" :desk-id="deskId"/>
 </template>
 
 <script setup lang="ts">
@@ -12,15 +15,26 @@ import { ref, watch } from "vue";
 import { useDeskStore } from "@/store/DeskStore";
 import Note from "@/components/Note.vue";
 import { Desk } from "@/store/models/Desk";
+import {useRouter} from "vue-router";
 
-const { getDesk } = useDeskStore();
+const { getDesk, updateDesk } = useDeskStore();
 
 const props = defineProps<{
   deskId: string;
 }>();
 
+const router = useRouter();
+
 const deskId = parseInt(props.deskId);
 const currentDesk = ref<Desk>(getDesk(deskId));
+
+const onDeskNameChange = () => {
+  updateDesk(currentDesk.value);
+};
+
+const goBack = () => {
+  router.back();
+}
 
 watch(
     () => getDesk(deskId),
@@ -29,4 +43,15 @@ watch(
 );
 </script>
 
-<style scoped></style>
+<style scoped>
+.desk-input {
+  @apply bg-transparent outline-none;
+  @apply focus:border-b focus:border-black;
+  @apply font-bold text-black text-2xl transition-colors;
+}
+.back-btn {
+  @apply bg-transparent py-1 px-3;
+  @apply hover:bg-blue-note hover:border-transparent focus:outline-none;
+  @apply text-black text-xl font-bold transition-colors;
+}
+</style>
