@@ -29,14 +29,4 @@ npm run build
 npm run preview
 ```
 
-## Запуск (docker)
-Для 2 варианта на машине должен быть установлен и запущен [docker](https://docs.docker.com/get-started/get-docker/)
-
-- Скачайте репозиторий;
-- В командной строке выполните комады:
-```bash
-docker build -t my-vue-app .
-docker run -p 8080:80 my-vue-app
-```
-- далее перейдите по ссылке: 
-http://localhost:8080
+Если вариант не сработал, перейдите по ссылке https://un1c0re.github.io/diginotes/

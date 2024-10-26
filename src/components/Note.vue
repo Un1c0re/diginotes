@@ -100,7 +100,7 @@ const deleteNote = () => {
 
 <style scoped>
 .note-body {
-  @apply w-[10rem] h-[10rem] cursor-pointer shadow-lg z-0 pt-3.5;
+  @apply w-[15rem] h-[15rem] cursor-pointer shadow-lg z-0 pt-2;
 }
 
 .context-buttons {
@@ -118,12 +118,12 @@ const deleteNote = () => {
 
 .note-pin {
   @apply absolute z-10;
-  @apply h-[2rem] w-[6rem] top-[-1rem] left-1/2 transform -translate-x-1/2;
-  @apply bg-purple-note border-2 border-white;
+  @apply h-[2.3rem] w-[8rem] top-[-1.5rem] left-1/2 transform -translate-x-1/2;
+  @apply bg-purple-note border-4 border-white;
 }
 
 .note-textarea {
-  @apply w-full h-full p-1.5;
+  @apply w-full h-full p-4;
   @apply bg-transparent border-none outline-none resize-none;
   @apply break-words whitespace-pre-wrap;
   @apply text-black cursor-default;
