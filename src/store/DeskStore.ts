@@ -57,7 +57,10 @@ export const useDeskStore = defineStore("DeskStore", () => {
         const desk = desks.value.find(d => d.id === deskId);
         if (!desk) return;
 
-        desk.notes.splice(noteId, 1);
+        const noteIndex = desk.notes.findIndex(n => n.id === noteId);
+        if (noteIndex === -1) return;
+
+        desk.notes.splice(noteIndex, 1);
     }
 
     return {
