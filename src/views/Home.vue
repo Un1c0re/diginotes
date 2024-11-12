@@ -2,7 +2,7 @@
   <div class="h-[94vh] w-[96vw] flex flex-wrap gap-x-5">
     <div v-for="desk in desks" :key="desk.id" class="h-[12rem] flex flex-col gap-1.5">
       <div class="desk-card" @click="openDesk(desk.id)">
-        <img class="h-[100%] w-[100%]" src="/placeholder.png" alt="placeholder"/>
+        <img class="h-[100%] w-[100%]" :src="desk.screenshot || '/placeholder.png'" alt="placeholder"/>
       </div>
       <input v-model="desk.name" class="desk-input"/>
       <div class="flex items-center justify-between">

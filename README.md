@@ -12,7 +12,7 @@
 - Доски сохраняются на устройстве
 
 ## Запуск (npm)
-для 1 варианта запуска на машине должен быть установлен [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+для запуска на машине должен быть установлен [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 - Скачайте репозиторий;
 - Откройте папку репозитория в терминале;

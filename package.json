@@ -11,6 +11,7 @@
   "dependencies": {
     "@volar/language-server": "2.4.0-alpha.18",
     "@vue/language-server": "2.0.28",
+    "html2canvas": "^1.4.1",
     "pinia": "^2.2.4",
     "pinia-plugin-store": "^2.2.8",
     "vue": "^3.5.10",
